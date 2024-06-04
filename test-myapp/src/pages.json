@@ -1,0 +1,127 @@
+{
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [
+		// 主页
+		{
+			"path": "pages/student/index/index",
+			"style": {
+				"enablePullDownRefresh": true,
+				"navigationBarTitleText": "主页",
+				"navigationStyle": "custom"
+			}
+		},
+		// 教学
+		{
+			"path": "pages/student/teaching/index",
+			"style": {
+				"enablePullDownRefresh": true,
+				"navigationBarTitleText": "教学"
+			}
+		},
+		// 测评
+		{
+			"path": "pages/student/evaluation/index",
+			"style": {
+				"navigationBarTitleText": "测评"
+			}
+		},
+		// 我的
+		{
+			"path": "pages/student/profile/profile",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/student/public/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/student/public/password",
+			"style": {
+				"navigationBarTitleText": "修改密码"
+			}
+		},
+		{
+			"path": "pages/student/public/register",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path" : "pages/videoPlayer/videoPlayer",
+			"style" : {
+				"navigationBarTitleText" : "视频播放"
+			}
+		},
+		{
+			"path" : "pages/ImageDisplay/ImageDisplay",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "#fff",
+		"navigationBarTitleText": "uniapp",
+		"navigationBarBackgroundColor": "#42CB89",
+		"backgroundColor": "#f8f8f8"
+	},
+	"tabBar": {
+		"color": "#C0C4CC",
+		"selectedColor": "#39b54a",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/student/index/index",
+				"iconPath": "static/tab-home.png",
+				"selectedIconPath": "static/tab-home-green.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/student/teaching/index",
+				"iconPath": "static/tab-cate.png",
+				"selectedIconPath": "static/tab-cate-green.png",
+				"text": "教学"
+			},
+			{
+				"pagePath": "pages/student/evaluation/index",
+				"iconPath": "static/tab-notify.png",
+				"selectedIconPath": "static/tab-notify-green.png",
+				"text": "测评"
+			},
+			{
+				"pagePath": "pages/student/profile/profile",
+				"iconPath": "static/tab-my.png",
+				"selectedIconPath": "static/tab-my-green.png",
+				"text": "我的"
+			}
+		]
+	},
+	"subPackages": [
+		{
+			"root": "packageStudent",
+			"pages": [
+				{
+					"path": "pages/set",
+					"style": {
+						"navigationBarTitleText": "设置"
+					}
+				},
+				{
+					"path": "pages/circle",
+					"style": {
+						"navigationBarTitleText": "班级圈",
+						"navigationStyle": "custom"
+					}
+				}
+			]
+		}
+	]
+}
