@@ -32,10 +32,12 @@
 					</view>
 					<view class="title">新建相册</view>
 				</view>
-				<view class="album-item" v-for="n in 10" :key="n">
-					<view class="thumb"></view>
-					<view class="title">默认相册</view>
-					<view class="count">0</view>
+				<view class="album-item" v-for="album in albums" :key="album.id" @click="openAlbum(album)">
+					<view class="thumb flex v-center h-center">
+						<image v-for="image in album.images.slice(0, 1)" :src="image" class="album-image" mode="aspectFill"></image>
+					</view>
+					<view class="title">{{ album.name }}</view>
+					<view class="count">{{ album.count }}</view>
 				</view>
 			</view>
 		</u-transition>
@@ -61,6 +63,27 @@ export default {
 			status: 'nomore',
 			showCircle: false,
 			showAlbum: false,
+			albums: [
+				{
+					id: 1,
+					name: '春游活动',
+					count: 2,
+					images: [
+						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/1.jpg",
+						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/10.jpg"
+					]
+				},
+				{
+					id: 2,
+					name: '运动会',
+					count: 3,
+					images: [
+						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/12.jpg",
+						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/2.jpg",
+						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/5.jpg"
+					]
+				}
+			]
 		}
 	},
 	methods: {
@@ -70,8 +93,12 @@ export default {
 		onTabChange ({ key, name }) {
 			this.tabCurrent = key
 		},
-	},
-	onShow () {
+		openAlbum (album) {
+			console.log('Opening album:', album);
+			uni.navigateTo({
+				url: `/pages/ImageDisplay/ImageDisplay?albumId=${album.id}`
+			});
+		}
 	}
 }
 
@@ -144,6 +171,10 @@ page{
 			border-radius: 12rpx;
 			overflow: hidden;
 			margin-bottom: 16rpx;
+			.album-image{
+				width: 100%;
+				height: 100%;
+			}
 		}
 		.name{
 			font-size: 32rpx;

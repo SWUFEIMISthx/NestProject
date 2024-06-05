@@ -7,7 +7,7 @@
 			<view class="content">{{ contentText }}</view>
 			<view class="actions flex v-center h-s-b">
 				<view class="date flex v-center">
-					05-12 20:48
+					{{ time }}
 					<view class="del">删除</view>
 				</view>
 				<view class="reply">
@@ -24,7 +24,8 @@ export default {
 		name: String,
 		title: String,
 		src: String,
-		contentText: String
+		contentText: String,
+		time: String
 	}
 };
 </script>
