@@ -101,10 +101,7 @@ export default {
 			motionList: [
 				{ id: 1, pic: 'https://images-special.oss-cn-chengdu.aliyuncs.com/%E8%90%A5%E5%85%BB%E6%95%99%E8%82%B2.jpg' },
 				{ id: 2, pic: 'https://images-special.oss-cn-chengdu.aliyuncs.com/%E5%BF%83%E7%90%86%E5%81%A5%E5%BA%B7.jpg' },
-				{ id: 3, pic: 'https://images-special.oss-cn-chengdu.aliyuncs.com/%E5%A4%96%E8%AF%AD%E6%95%99%E8%82%B2.jpg' },
-				{ id: 4, pic: '/static/images/orangefood.jpg' },
-				{ id: 5, pic: '/static/images/redfood.jpg' },
-				{ id: 6, pic: '/static/images/whitefood.jpg' },
+				{ id: 3, pic: 'https://images-special.oss-cn-chengdu.aliyuncs.com/%E5%A4%96%E8%AF%AD%E6%95%99%E8%82%B2.jpg' }
 			],
 			circleItems:[
 				{
