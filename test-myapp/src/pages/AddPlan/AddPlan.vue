@@ -22,8 +22,14 @@ export default {
     data() {
         return {
             planName: '',
-            planDetails: ''
+            planDetails: '',
+            selectedDate: new Date(),
         };
+    },
+    onLoad(options) {
+        if (options.date) {
+            this.selectedDate = new Date(options.date);
+        }
     },
     methods: {
         goBack() {
@@ -34,6 +40,7 @@ export default {
                 const plan = {
                     name: this.planName,
                     details: this.planDetails,
+                    date: this.selectedDate.toISOString(),
                     id: Date.now()
                 };
                 let plans = uni.getStorageSync('plans') || [];

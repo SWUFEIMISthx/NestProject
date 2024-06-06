@@ -20,13 +20,22 @@
 	<view class="page-body" :style="{ height: `calc(100vh - ${pageHeaderHeight + 12}rpx)` }">
 		<u-transition :show="tabCurrent === 'circle'" :duration="500" mode="slide-left">
 			<view class="transition-body circle-list" :style="{ height: `calc(100vh - ${pageHeaderHeight + 12}rpx)` }">
-				<circle-list-item v-for="n in 10" :key="n"/>
+				<view v-for="item in circleItems" :key="item.id" class="circle-item">
+					<view class="circle-header">
+						<text>{{ item.title }}</text>
+						<view @click="deleteItem(item.id)" class="delete-btn">删除</view>
+					</view>
+					<text>{{ item.content }}</text>
+					<view @click="commentItem(item.id)" class="comment-btn">
+						<u-icon name="chat" size="24"></u-icon>
+					</view>
+				</view>
 				<u-loadmore :status="status" />
 			</view>
 		</u-transition>
 		<u-transition :show="tabCurrent === 'album'" :duration="500" mode="slide-right">
 			<view class="transition-body album-list flex flex-wrap h-s-b" :style="{ height: `calc(100vh - ${pageHeaderHeight + 12}rpx)` }">
-				<view class="album-item">
+				<view class="album-item" @click="createAlbum">
 					<view class="thumb flex v-center h-center">
 						<u-icon name="plus" size="48"></u-icon>
 					</view>
@@ -42,9 +51,9 @@
 			</view>
 		</u-transition>
 	</view>
-
 </view>
 </template>
+
 <script>
 import PageHeader from '@/components/PageHeader/index.vue';
 import CircleListItem from '@/components/CircleListItem/index.vue';
@@ -63,6 +72,11 @@ export default {
 			status: 'nomore',
 			showCircle: false,
 			showAlbum: false,
+			circleItems: [
+				{ id: 1, title: '活动1', content: '这是第一个班级活动的内容' },
+				{ id: 2, title: '活动2', content: '这是第二个班级活动的内容' },
+				{ id: 3, title: '活动3', content: '这是第三个班级活动的内容' },
+			],
 			albums: [
 				{
 					id: 1,
@@ -75,12 +89,12 @@ export default {
 						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/2.jpg",
 						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/5.jpg",
 						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/11.jpg",
-						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/13.jpg",
-						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/14.jpg",
+						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%85%A7%E7%89%87/13.jpg",
+						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%85%A7%E7%89%87/14.jpg",
 						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/15.jpg",
 						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/3.jpg",
 						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/4.jpg",
-						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/6.jpg",
+						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%85%A7%E7%89%87/6.jpg",
 						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/7.jpg",
 						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/8.jpg",
 						"https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/%E7%95%99%E5%AE%88%E5%84%BF%E7%AB%A5%E7%85%A7%E7%89%87/9.jpg"
@@ -101,10 +115,24 @@ export default {
 			uni.navigateTo({
 				url: `/pages/ImageDisplay/ImageDisplay?albumId=${album.id}`
 			});
+		},
+		deleteItem(id) {
+			this.circleItems = this.circleItems.filter(item => item.id !== id);
+		},
+		commentItem(id) {
+			uni.showToast({
+				title: `Commenting on item ${id}`,
+				icon: 'none'
+			});
+		},
+		createAlbum() {
+			uni.showToast({
+				title: 'Create new album',
+				icon: 'none'
+			});
 		}
 	}
 }
-
 </script>
 
 <style scoped lang="scss">
@@ -161,6 +189,25 @@ page{
 }
 .circle-list{
 	padding: 32rpx 24rpx 100rpx;
+	.circle-item{
+		padding: 16rpx;
+		margin-bottom: 24rpx;
+		border-bottom: 1px solid #eee;
+		.circle-header{
+			display: flex;
+			justify-content: space-between;
+			.delete-btn{
+				color: #1A73E8;
+				cursor: pointer;
+			}
+		}
+		.comment-btn{
+			margin-top: 8rpx;
+			display: flex;
+			justify-content: flex-end;
+			cursor: pointer;
+		}
+	}
 }
 .album-list{
 	padding: 80rpx 24rpx 100rpx;

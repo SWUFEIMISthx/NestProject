@@ -32,7 +32,7 @@
             </view>
             <view v-else-if="activeTab === 'capability'">
                 <!-- 能力测评的内容 -->
-                <view>能力测评内容</view>
+                <view>Building！页面还在开发中</view>
             </view>
             <view v-else-if="activeTab === 'status'">
                 <view class="status-container">
@@ -46,7 +46,7 @@
             </view>
             <view v-else-if="activeTab === 'myEvaluation'">
                 <!-- 我的测评的内容 -->
-                <view>我的测评内容</view>
+                <view>Building！页面还在开发中！</view>
             </view>
         </view>
         <myTabbar :current="2"></myTabbar>
@@ -75,9 +75,12 @@ export default {
             ],
             overallGrade: 'A2',
             childrenList: [
-                { id: 1, name: '赵子怡', avatar: 'https://example.com/avatar1.jpg', grade: '75分' },
-                { id: 2, name: '赵子怡', avatar: 'https://example.com/avatar2.jpg', grade: '75分' },
-                { id: 3, name: '赵子怡', avatar: 'https://example.com/avatar3.jpg', grade: '75分' },
+                { id: 1, name: '赵子怡', avatar: 'https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/children_profile/%E5%84%BF%E7%AB%A5%E5%A4%B4%E5%83%8F1.jpg', grade: '85分' },
+                { id: 2, name: '李哲凡', avatar: 'https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/children_profile/%E5%84%BF%E7%AB%A5%E5%A4%B4%E5%83%8F4.jpg', grade: '95分' },
+                { id: 3, name: '林雨欣', avatar: 'https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/children_profile/%E5%84%BF%E7%AB%A5%E5%A4%B4%E5%83%8F2.jpg', grade: '80分' },
+				{ id: 4, name: '陈柳伊', avatar: 'https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/children_profile/%E5%84%BF%E7%AB%A5%E5%A4%B4%E5%83%8F5.jpg', grade: '90分' },
+				{ id: 5, name: '王晓月', avatar: 'https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/children_profile/%E5%84%BF%E7%AB%A5%E5%A4%B4%E5%83%8F6.jpg', grade: '75分' },
+				{ id: 6, name: '赖樱清', avatar: 'https://images-special.oss-cn-chengdu.aliyuncs.com/CloudImages/children_profile/%E5%84%BF%E7%AB%A5%E5%A4%B4%E5%83%8F3.jpg', grade: '85分' },
             ]
         };
     },
@@ -195,13 +198,13 @@ export default {
     box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
 }
 .status-avatar {
-    width: 80rpx;
-    height: 80rpx;
+    width: 100rpx;
+    height: 100rpx;
     border-radius: 50%;
     margin-bottom: 10rpx;
 }
 .status-name {
-    font-size: 30rpx;
+    font-size: 40rpx;
     color: #333;
     margin-bottom: 10rpx;
 }
