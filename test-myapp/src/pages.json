@@ -64,6 +64,13 @@
 			{
 				"navigationBarTitleText" : "相册展示"
 			}
+		},
+		{
+			"path": "pages/AddPlan/AddPlan",
+			"style": 
+			{
+			    "navigationBarTitleText": "添加计划"
+			}
 		}
 	],
 	"globalStyle": {
