@@ -28,20 +28,29 @@ export default {
 	components: { PageHeader },
 	data() {
 		return {
-			calendarBarList: [
-				{ week: '周日', date: '27' },
-				{ week: '周一', date: '28' },
-				{ week: '周二', date: '29' },
-				{ week: '周三', date: '30' },
-				{ week: '周四', date: '31' },
-				{ week: '周五', date: '01' },
-				{ week: '周六', date: '02' },
-			]
+			calendarBarList: this.generateCalendarBarList()
 		};
 	},
 	onShow() {
 	},
-	methods: {}
+	methods: {
+		generateCalendarBarList() {
+		    const days = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+		    const today = new Date();
+		    const result = [];
+		
+		    for (let i = -3; i <= 3; i++) {
+		        const date = new Date();
+		        date.setDate(today.getDate() + i);
+		        result.push({
+		            week: days[date.getDay()],
+		            date: date.getDate()
+		        });
+		    }
+		
+		    return result;
+		}
+	}
 };
 </script>
 <style scoped lang="scss">
